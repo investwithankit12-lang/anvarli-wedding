@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+venv/
+env/
+.venv/
+.env
+
+# SQLite (local dev DB — never commit to Git)
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets & environment
+.env
+.env.local
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel
+.vercel/
+
+# Uploaded files (kept locally; in production served from Supabase Storage)
+assets/uploads/*
+!assets/uploads/.gitkeep
+
+# Logs & test artifacts
+*.log
+verify_quick.py
+setup_images.py
+test_full_system.py
+verify_site.py

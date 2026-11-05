@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A0E18"/>
+      <stop offset="100%" stop-color="#2A1810"/>
+    </linearGradient>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C98A2B"/>
+      <stop offset="50%" stop-color="#E3A94C"/>
+      <stop offset="100%" stop-color="#C98A2B"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGrad1)"/>
+  <!-- Decorative border frame -->
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#C98A2B" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="36" y="36" width="728" height="528" fill="none" stroke="#C98A2B" stroke-width="0.8" stroke-dasharray="4,4" stroke-opacity="0.3"/>
+  <!-- Mandap Chhadnatala Canopy Architecture -->
+  <path d="M160 480 L160 220 C160 200 200 160 400 130 C600 160 640 200 640 220 L640 480" fill="none" stroke="#E3A94C" stroke-width="3" stroke-opacity="0.7"/>
+  <path d="M220 480 L220 250 C220 230 280 190 400 170 C520 190 580 230 580 250 L580 480" fill="none" stroke="#C98A2B" stroke-width="1.5" stroke-opacity="0.5"/>
+  <!-- Pillars with traditional carvings -->
+  <rect x="150" y="220" width="20" height="260" fill="#6E1423" stroke="#C98A2B" stroke-width="1"/>
+  <rect x="630" y="220" width="20" height="260" fill="#6E1423" stroke="#C98A2B" stroke-width="1"/>
+  <!-- Marigold Garlands Hanging -->
+  <g fill="#E3A94C" stroke="#C98A2B" stroke-width="0.5">
+    <!-- Center drape -->
+    <path d="M170 230 Q400 320 630 230" fill="none" stroke="#E3A94C" stroke-width="6" stroke-dasharray="14,6"/>
+    <path d="M200 240 Q400 350 600 240" fill="none" stroke="#C98A2B" stroke-width="5" stroke-dasharray="12,6"/>
+    <path d="M240 250 Q400 380 560 250" fill="none" stroke="#E3A94C" stroke-width="4" stroke-dasharray="10,5"/>
+    <!-- Vertical tassels -->
+    <line x1="260" y1="260" x2="260" y2="400" stroke="#E3A94C" stroke-width="4" stroke-dasharray="8,4"/>
+    <line x1="330" y1="280" x2="330" y2="430" stroke="#E3A94C" stroke-width="4" stroke-dasharray="8,4"/>
+    <line x1="400" y1="300" x2="400" y2="450" stroke="#E3A94C" stroke-width="5" stroke-dasharray="8,4"/>
+    <line x1="470" y1="280" x2="470" y2="430" stroke="#E3A94C" stroke-width="4" stroke-dasharray="8,4"/>
+    <line x1="540" y1="260" x2="540" y2="400" stroke="#E3A94C" stroke-width="4" stroke-dasharray="8,4"/>
+  </g>
+  <!-- Sacred Fire Homa Kund in Center -->
+  <polygon points="340,490 460,490 480,450 320,450" fill="#6E1423" stroke="#C98A2B" stroke-width="2"/>
+  <path d="M370 450 Q400 370 410 400 Q430 380 430 450 Z" fill="#E3A94C" opacity="0.9"/>
+  <!-- Alpona motif at bottom base -->
+  <circle cx="400" cy="530" r="28" fill="none" stroke="#FBF4E8" stroke-width="1.5" stroke-opacity="0.6"/>
+  <path d="M360 530 Q400 500 440 530 Q400 560 360 530 Z" fill="none" stroke="#FBF4E8" stroke-width="1.2" stroke-opacity="0.5"/>
+  <!-- Label / Title overlay -->
+  <text x="400" y="80" text-anchor="middle" fill="#FBF4E8" font-family="'Cormorant Garamond', Georgia, serif" font-size="24" font-weight="600" letter-spacing="1">Traditional Mandap Styling</text>
+  <text x="400" y="105" text-anchor="middle" fill="#E3A94C" font-family="'Hind Siliguri', sans-serif" font-size="13" letter-spacing="0.5">Ballygunge Heritage Residence • Wedding</text>
+</svg>

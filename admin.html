@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Anvarli Event Managers</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg-deep: #180306;
+      --color-bg-garnet: #2C060D;
+      --color-bg-card: rgba(45, 8, 14, 0.95);
+      --color-gold: #D4AF37;
+      --color-gold-light: #F3E5AB;
+      --color-gold-warm: #E5B24A;
+      --color-gold-glow: rgba(212, 175, 55, 0.2);
+      --color-border: rgba(212, 175, 55, 0.3);
+      --color-text-main: #FFF8EE;
+      --color-text-muted: #E8DAC8;
+      --color-text-faint: #A89588;
+      --color-danger: #E63946;
+      --color-success: #2A9D8F;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg-deep);
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(95, 14, 28, 0.5) 0%, rgba(24, 3, 6, 0.98) 80%),
+        url("assets/patterns/kolka-gold.svg");
+      background-repeat: repeat;
+      background-size: auto, 120px 120px;
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* -----------------------------------------------------------------------
+       Header & Navigation
+       ----------------------------------------------------------------------- */
+    .admin-header {
+      background-color: rgba(24, 3, 6, 0.96);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      padding: 0.85rem 1.5rem;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-monogram {
+      width: 2.2rem;
+      height: 2.2rem;
+      border: 1px solid var(--color-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-gold-light);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--color-text-main);
+    }
+
+    .admin-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background-color: rgba(212, 175, 55, 0.18);
+      color: var(--color-gold-warm);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      margin-left: 0.5rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-greeting {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .user-greeting strong {
+      color: var(--color-gold-light);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.5rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #C98A2B 0%, #D4AF37 50%, #B8860B 100%);
+      color: #180306;
+      border-color: #D4AF37;
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-gold-light);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--color-gold);
+    }
+
+    .btn-danger {
+      background: rgba(230, 57, 70, 0.15);
+      color: #FFB3BA;
+      border-color: rgba(230, 57, 70, 0.4);
+    }
+
+    .btn-danger:hover {
+      background: rgba(230, 57, 70, 0.35);
+      border-color: #E63946;
+    }
+
+    /* -----------------------------------------------------------------------
+       Tab Navigation
+       ----------------------------------------------------------------------- */
+    .admin-nav-bar {
+      background-color: rgba(35, 5, 11, 0.95);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .nav-tabs {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0.25rem;
+      padding: 0 1.5rem;
+      overflow-x: auto;
+    }
+
+    .nav-tab-btn {
+      background: none;
+      border: none;
+      color: var(--color-text-muted);
+      font-family: var(--font-body);
+      font-size: 0.925rem;
+      font-weight: 600;
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-tab-btn:hover {
+      color: var(--color-gold-light);
+      background-color: rgba(212, 175, 55, 0.05);
+    }
+
+    .nav-tab-btn.active {
+      color: var(--color-gold-warm);
+      border-bottom-color: var(--color-gold);
+      background-color: rgba(212, 175, 55, 0.08);
+    }
+
+    .tab-counter {
+      background-color: rgba(212, 175, 55, 0.2);
+      color: var(--color-gold-light);
+      padding: 0.1rem 0.45rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
+    }
+
+    /* -----------------------------------------------------------------------
+       Main Dashboard Workspace
+       ----------------------------------------------------------------------- */
+    .admin-main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem 1.5rem;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 600;
+      color: var(--color-gold-light);
+    }
+
+    .panel-subtitle {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* -----------------------------------------------------------------------
+       Cards & Tables
+       ----------------------------------------------------------------------- */
+    .dashboard-card {
+      background-color: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-header-bar {
+      padding: 1rem 1.25rem;
+      background-color: rgba(24, 3, 6, 0.7);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      padding: 0.5rem 0.85rem;
+      background-color: rgba(18, 3, 6, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--color-text-main);
+      font-size: 0.875rem;
+      border-radius: 3px;
+      min-width: 240px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-gold);
+    }
+
+    .filter-select {
+      padding: 0.5rem 0.85rem;
+      background-color: rgba(18, 3, 6, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--color-text-main);
+      font-size: 0.875rem;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      width: 100%;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .data-table th {
+      background-color: rgba(18, 3, 6, 0.85);
+      color: var(--color-gold-warm);
+      font-weight: 600;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--color-border);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+      vertical-align: middle;
+    }
+
+    .data-table tbody tr:hover {
+      background-color: rgba(212, 175, 55, 0.04);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status-new {
+      background-color: rgba(229, 178, 74, 0.2);
+      color: #E5B24A;
+      border: 1px solid #E5B24A;
+    }
+
+    .status-contacted {
+      background-color: rgba(69, 123, 157, 0.2);
+      color: #A8DADC;
+      border: 1px solid #457B9D;
+    }
+
+    .status-confirmed {
+      background-color: rgba(42, 157, 143, 0.2);
+      color: #52B788;
+      border: 1px solid #2A9D8F;
+    }
+
+    .status-archived {
+      background-color: rgba(108, 117, 125, 0.2);
+      color: #ADB5BD;
+      border: 1px solid #6C757D;
+    }
+
+    .needs-image-badge {
+      display: inline-block;
+      background-color: rgba(230, 57, 70, 0.2);
+      color: #FFB3BA;
+      border: 1px solid rgba(230, 57, 70, 0.5);
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .has-image-badge {
+      display: inline-block;
+      background-color: rgba(42, 157, 143, 0.2);
+      color: #52B788;
+      border: 1px solid rgba(42, 157, 143, 0.5);
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* -----------------------------------------------------------------------
+       Image Manager Grid
+       ----------------------------------------------------------------------- */
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    .image-card {
+      background-color: rgba(24, 3, 6, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image-preview-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: #100204;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .image-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-card-body {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .image-card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--color-gold-light);
+    }
+
+    .image-card-cat {
+      font-size: 0.8rem;
+      color: var(--color-text-faint);
+    }
+
+    .file-upload-zone {
+      border: 1px dashed rgba(212, 175, 55, 0.4);
+      background-color: rgba(212, 175, 55, 0.04);
+      padding: 0.75rem;
+      text-align: center;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .file-upload-zone:hover {
+      border-color: var(--color-gold);
+      background-color: rgba(212, 175, 55, 0.09);
+    }
+
+    .file-upload-zone input[type="file"] {
+      display: none;
+    }
+
+    .upload-label {
+      font-size: 0.8rem;
+      color: var(--color-gold-warm);
+      cursor: pointer;
+      display: block;
+    }
+
+    /* -----------------------------------------------------------------------
+       Gallery Grid
+       ----------------------------------------------------------------------- */
+    .gallery-admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    .gallery-admin-card {
+      background-color: rgba(24, 3, 6, 0.7);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .gallery-thumb-wrapper {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background-color: #100204;
+    }
+
+    .gallery-thumb-wrapper img, .gallery-thumb-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .type-badge {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      background-color: rgba(24, 3, 6, 0.85);
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold-light);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    .gallery-card-details {
+      padding: 1rem;
+    }
+
+    /* -----------------------------------------------------------------------
+       Modals
+       ----------------------------------------------------------------------- */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 1, 3, 0.85);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop[hidden] {
+      display: none;
+    }
+
+    .modal-dialog {
+      background-color: var(--color-bg-garnet);
+      border: 1px solid var(--color-gold);
+      border-top: 3px solid var(--color-gold);
+      width: 100%;
+      max-width: 580px;
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      background-color: rgba(24, 3, 6, 0.8);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--color-gold-light);
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--color-text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--color-gold);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background-color: rgba(24, 3, 6, 0.8);
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      background-color: rgba(18, 3, 6, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--color-text-main);
+      font-size: 0.9rem;
+      border-radius: 3px;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-gold);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* Notification Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast-msg {
+      background-color: var(--color-bg-garnet);
+      border: 1px solid var(--color-gold);
+      color: var(--color-text-main);
+      padding: 0.85rem 1.25rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: slideIn 0.25s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Admin Header -->
+  <header class="admin-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="brand-monogram">A</div>
+        <span class="brand-title">ANVARLI EVENT MANAGERS</span>
+        <span class="admin-badge">Admin Portal</span>
+      </div>
+
+      <div class="header-actions">
+        <span class="user-greeting">Logged in as: <strong id="logged-username">Anvarli12</strong></span>
+        <a href="/" target="_blank" class="btn btn-outline" title="Open live public website in new tab">
+          View Live Site &#8599;
+        </a>
+        <button type="button" class="btn btn-danger" id="logout-btn">
+          Log Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="admin-nav-bar" aria-label="Admin Navigation Tabs">
+    <div class="nav-tabs">
+      <button type="button" class="nav-tab-btn active" data-tab="tab-services">
+        Services Categories <span class="tab-counter" id="counter-services">17</span>
+      </button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-images">
+        Service Images Manager <span class="tab-counter" id="counter-images">17</span>
+      </button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-gallery">
+        Gallery &amp; Media <span class="tab-counter" id="counter-gallery">7</span>
+      </button>
+      <button type="button" class="nav-tab-btn" data-tab="tab-enquiries">
+        Client Enquiries <span class="tab-counter" id="counter-enquiries">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Workspace -->
+  <main class="admin-main">
+    
+    <!-- =====================================================================
+         TAB 1: SERVICES MANAGER
+         ===================================================================== -->
+    <section class="tab-panel active" id="tab-services">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Services Categories Manager</h2>
+          <p class="panel-subtitle">Add, edit, and organize the 17 event categories displayed on the public site.</p>
+        </div>
+        <button type="button" class="btn btn-gold" id="btn-add-service">
+          + Add New Service
+        </button>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-header-bar">
+          <input type="text" class="search-input" id="search-services" placeholder="Search services by title or category...">
+          <span style="font-size: 0.85rem; color: var(--color-text-muted);" id="services-count-label">Showing 17 categories</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">ID</th>
+                <th style="width: 220px;">Category</th>
+                <th style="width: 240px;">Display Title</th>
+                <th>Description</th>
+                <th style="width: 120px;">Image Status</th>
+                <th style="width: 150px; text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="services-table-body">
+              <tr><td colspan="6" style="text-align: center; padding: 2rem;">Loading services...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 2: SERVICE IMAGES MANAGER
+         ===================================================================== -->
+    <section class="tab-panel" id="tab-images">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Service Images Manager</h2>
+          <p class="panel-subtitle">Upload, preview, validate, and replace images for each service category.</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <label style="font-size: 0.85rem; color: var(--color-text-muted);" for="filter-image-status">Filter:</label>
+          <select id="filter-image-status" class="filter-select">
+            <option value="all">All Services</option>
+            <option value="needs_image">Needs Image Only</option>
+            <option value="has_image">Has Image Only</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="images-grid" id="service-images-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 3: GALLERY MANAGER
+         ===================================================================== -->
+    <section class="tab-panel" id="tab-gallery">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Gallery &amp; Video Media Manager</h2>
+          <p class="panel-subtitle">Manage high-resolution event photos and video showcase links on the website gallery.</p>
+        </div>
+        <button type="button" class="btn btn-gold" id="btn-add-gallery">
+          + Add Media Item
+        </button>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="gallery-admin-grid" id="gallery-admin-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 4: ENQUIRIES MANAGER
+         ===================================================================== -->
+    <section class="tab-panel" id="tab-enquiries">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Client Enquiries &amp; Submissions</h2>
+          <p class="panel-subtitle">All public website contact submissions saved securely to database with address and timestamps.</p>
+        </div>
+        <a href="/api/admin/enquiries/export" class="btn btn-gold" id="btn-export-csv" download="anvarli_enquiries_export.csv">
+          &#8681; Export to CSV
+        </a>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-header-bar">
+          <input type="text" class="search-input" id="search-enquiries" placeholder="Search by name, phone, address, or details...">
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <label for="filter-enquiry-status" style="font-size: 0.85rem; color: var(--color-text-muted);">Status:</label>
+            <select id="filter-enquiry-status" class="filter-select">
+              <option value="All">All Statuses</option>
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Archived">Archived</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">ID</th>
+                <th style="width: 160px;">Client Name</th>
+                <th style="width: 140px;">Phone</th>
+                <th style="width: 180px;">Address / City</th>
+                <th style="width: 130px;">Occasion</th>
+                <th style="width: 110px;">Preferred Date</th>
+                <th>Client Message</th>
+                <th style="width: 130px;">Status</th>
+                <th style="width: 140px;">Submitted</th>
+                <th style="width: 80px; text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="enquiries-table-body">
+              <tr><td colspan="10" style="text-align: center; padding: 2rem;">Loading enquiries...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       MODAL 1: ADD / EDIT SERVICE
+       ===================================================================== -->
+  <div class="modal-backdrop" id="service-modal" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="service-modal-title">Add Service Category</h3>
+        <button type="button" class="modal-close-btn" data-close="service-modal">&times;</button>
+      </div>
+      <form id="service-form">
+        <div class="modal-body">
+          <input type="hidden" id="service-edit-id" value="">
+          <div class="form-group">
+            <label for="modal-service-category" class="form-label">Category Name *</label>
+            <input type="text" id="modal-service-category" class="form-control" required placeholder="e.g. Wedding Planning & Management">
+          </div>
+          <div class="form-group">
+            <label for="modal-service-title" class="form-label">Display Heading *</label>
+            <input type="text" id="modal-service-title" class="form-control" required placeholder="e.g. Full Bengali Wedding Styling & Coordination">
+          </div>
+          <div class="form-group">
+            <label for="modal-service-desc" class="form-label">Description *</label>
+            <textarea id="modal-service-desc" class="form-control" rows="3" required placeholder="Detailed Bengali wedding styling description..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="modal-service-image" class="form-label">Image Path / URL</label>
+            <input type="text" id="modal-service-image" class="form-control" value="assets/gallery/mandap-decor.svg">
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" id="modal-service-needs-image" style="width: 18px; height: 18px; cursor: pointer;">
+            <label for="modal-service-needs-image" style="font-size: 0.9rem; cursor: pointer; color: var(--color-gold-warm);">Flag as "Needs Image" (Placeholder)</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="service-modal">Cancel</button>
+          <button type="submit" class="btn btn-gold">Save Service</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: ADD / EDIT GALLERY ITEM
+       ===================================================================== -->
+  <div class="modal-backdrop" id="gallery-modal" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="gallery-modal-title">Add Gallery Media</h3>
+        <button type="button" class="modal-close-btn" data-close="gallery-modal">&times;</button>
+      </div>
+      <form id="gallery-form">
+        <div class="modal-body">
+          <input type="hidden" id="gallery-edit-id" value="">
+          <input type="hidden" id="gallery-current-url" value="">
+
+          <div class="form-group">
+            <label for="modal-gallery-type" class="form-label">Media Type *</label>
+            <select id="modal-gallery-type" class="form-control" required>
+              <option value="photo">Photo (Image)</option>
+              <option value="video">Video (YouTube / Vimeo)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="modal-gallery-title" class="form-label">Title / Caption *</label>
+            <input type="text" id="modal-gallery-title" class="form-control" required placeholder="e.g. Traditional Mandap Styling">
+          </div>
+
+          <div class="form-group">
+            <label for="modal-gallery-category" class="form-label">Category *</label>
+            <input type="text" id="modal-gallery-category" class="form-control" required placeholder="e.g. Wedding / Haldi / Reception">
+          </div>
+
+          <!-- PHOTO: file upload with preview (shown when type=photo) -->
+          <div class="form-group" id="gallery-photo-group">
+            <label class="form-label">Upload Photo *</label>
+            <div class="svc-img-upload-box" id="gallery-upload-box" onclick="document.getElementById('modal-gallery-file').click()" style="cursor:pointer;">
+              <div id="gallery-preview-wrap">
+                <img id="gallery-img-preview" src="" alt="preview" style="display:none; width:100%; max-height:160px; object-fit:cover; border-radius:4px;">
+                <div id="gallery-upload-placeholder" style="text-align:center; padding:1.5rem 1rem; color:var(--color-text-muted);">
+                  <div style="font-size:2rem; margin-bottom:0.5rem;">📷</div>
+                  <p style="font-weight:600; color:var(--color-gold-warm);">Click to choose image from device</p>
+                  <p style="font-size:0.8rem; margin-top:0.25rem;">JPG, PNG, WEBP · Max 25 MB</p>
+                </div>
+              </div>
+            </div>
+            <input type="file" id="modal-gallery-file" style="display:none;" accept="image/jpeg,image/png,image/webp">
+            <p id="gallery-file-name" style="margin-top:0.5rem; font-size:0.8rem; color:var(--color-gold-warm);"></p>
+          </div>
+
+          <!-- VIDEO: embed URL (shown when type=video) -->
+          <div class="form-group" id="gallery-video-group" style="display:none;">
+            <label for="modal-gallery-video-url" class="form-label">Video Embed URL *</label>
+            <input type="url" id="modal-gallery-video-url" class="form-control" placeholder="https://www.youtube.com/embed/VIDEO_ID">
+            <p style="font-size:0.8rem; color:var(--color-text-muted); margin-top:0.4rem;">Paste a YouTube or Vimeo embed link (e.g. youtube.com/embed/…)</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="gallery-modal">Cancel</button>
+          <button type="submit" class="btn btn-gold" id="gallery-save-btn">Save Media</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Admin Controller Script -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Verify Session Auth
+      async function checkAuth() {
+        try {
+          const res = await fetch('/api/admin/me');
+          if (!res.ok) {
+            window.location.href = '/admin/login';
+            return;
+          }
+          const data = await res.json();
+          if (!data.success) {
+            window.location.href = '/admin/login';
+          } else {
+            document.getElementById('logged-username').textContent = data.username;
+          }
+        } catch (err) {
+          window.location.href = '/admin/login';
+        }
+      }
+
+      checkAuth();
+
+      // Toast Notification
+      function showToast(msg) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3500);
+      }
+
+      // Logout handler
+      document.getElementById('logout-btn').addEventListener('click', async () => {
+        try {
+          await fetch('/api/admin/logout', { method: 'POST' });
+          localStorage.removeItem('anvarli_admin_token');
+          window.location.href = '/admin/login';
+        } catch (e) {
+          window.location.href = '/admin/login';
+        }
+      });
+
+      // Tabs Switcher
+      const tabBtns = document.querySelectorAll('.nav-tab-btn');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.tab;
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabPanels.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          document.getElementById(target).classList.add('active');
+        });
+      });
+
+      // Modal Close Handlers
+      document.querySelectorAll('[data-close]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modalId = btn.dataset.close;
+          document.getElementById(modalId).setAttribute('hidden', '');
+        });
+      });
+
+      // -----------------------------------------------------------------------
+      // 1. SERVICES CRUD
+      // -----------------------------------------------------------------------
+      let allServices = [];
+
+      async function loadServices() {
+        try {
+          const res = await fetch('/api/admin/services');
+          const data = await res.json();
+          if (data.success) {
+            allServices = data.services;
+            renderServicesTable(allServices);
+            renderServiceImagesGrid(allServices);
+            document.getElementById('counter-services').textContent = allServices.length;
+            document.getElementById('counter-images').textContent = allServices.length;
+            document.getElementById('services-count-label').textContent = `Showing ${allServices.length} categories`;
+          }
+        } catch (e) {
+          console.error('Error loading services:', e);
+        }
+      }
+
+      function renderServicesTable(services) {
+        const tbody = document.getElementById('services-table-body');
+        if (!services.length) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem;">No services found.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = services.map(s => `
+          <tr>
+            <td><strong>#${s.id}</strong></td>
+            <td><strong style="color: var(--color-gold-light);">${escapeHtml(s.category)}</strong></td>
+            <td>${escapeHtml(s.title)}</td>
+            <td style="color: var(--color-text-muted);">${escapeHtml(s.description)}</td>
+            <td>
+              ${s.needs_image ? '<span class="needs-image-badge">NEEDS IMAGE</span>' : '<span class="has-image-badge">&#10003; Active Image</span>'}
+            </td>
+            <td style="text-align: right; white-space: nowrap;">
+              <button type="button" class="btn btn-outline" style="padding: 0.35rem 0.65rem;" onclick="editService(${s.id})">Edit</button>
+              <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem;" onclick="deleteService(${s.id})">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Search services
+      document.getElementById('search-services').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = allServices.filter(s => 
+          s.category.toLowerCase().includes(q) || 
+          s.title.toLowerCase().includes(q) || 
+          s.description.toLowerCase().includes(q)
+        );
+        renderServicesTable(filtered);
+      });
+
+      // Add Service Modal Open
+      document.getElementById('btn-add-service').addEventListener('click', () => {
+        document.getElementById('service-edit-id').value = '';
+        document.getElementById('service-modal-title').textContent = 'Add Service Category';
+        document.getElementById('modal-service-category').value = '';
+        document.getElementById('modal-service-title').value = '';
+        document.getElementById('modal-service-desc').value = '';
+        document.getElementById('modal-service-image').value = 'assets/gallery/mandap-decor.svg';
+        document.getElementById('modal-service-needs-image').checked = false;
+        document.getElementById('service-modal').removeAttribute('hidden');
+      });
+
+      // Edit Service
+      window.editService = function(id) {
+        const s = allServices.find(x => x.id === id);
+        if (!s) return;
+        document.getElementById('service-edit-id').value = s.id;
+        document.getElementById('service-modal-title').textContent = 'Edit Service: ' + s.category;
+        document.getElementById('modal-service-category').value = s.category;
+        document.getElementById('modal-service-title').value = s.title;
+        document.getElementById('modal-service-desc').value = s.description;
+        document.getElementById('modal-service-image').value = s.image;
+        document.getElementById('modal-service-needs-image').checked = !!s.needs_image;
+        document.getElementById('service-modal').removeAttribute('hidden');
+      };
+
+      // Delete Service
+      window.deleteService = async function(id) {
+        if (!confirm('Are you sure you want to delete this service category?')) return;
+        try {
+          const res = await fetch(`/api/admin/services/${id}`, { method: 'DELETE' });
+          if (res.ok) {
+            showToast('Service category deleted.');
+            loadServices();
+          }
+        } catch (e) {
+          showToast('Failed to delete service.');
+        }
+      };
+
+      // Save Service Form
+      document.getElementById('service-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const editId = document.getElementById('service-edit-id').value;
+        const payload = {
+          category: document.getElementById('modal-service-category').value.trim(),
+          title: document.getElementById('modal-service-title').value.trim(),
+          description: document.getElementById('modal-service-desc').value.trim(),
+          image: document.getElementById('modal-service-image').value.trim(),
+          needs_image: document.getElementById('modal-service-needs-image').checked ? 1 : 0
+        };
+
+        try {
+          let res;
+          if (editId) {
+            res = await fetch(`/api/admin/services/${editId}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+          } else {
+            res = await fetch('/api/admin/services', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+          }
+
+          if (res.ok) {
+            showToast(editId ? 'Service updated successfully!' : 'Service added successfully!');
+            document.getElementById('service-modal').setAttribute('hidden', '');
+            loadServices();
+          }
+        } catch (err) {
+          showToast('Error saving service.');
+        }
+      });
+
+      // -----------------------------------------------------------------------
+      // 2. SERVICE IMAGES MANAGER
+      // -----------------------------------------------------------------------
+      function renderServiceImagesGrid(services) {
+        const grid = document.getElementById('service-images-grid');
+        const filter = document.getElementById('filter-image-status').value;
+
+        let displayList = services;
+        if (filter === 'needs_image') {
+          displayList = services.filter(s => s.needs_image === 1);
+        } else if (filter === 'has_image') {
+          displayList = services.filter(s => s.needs_image === 0);
+        }
+
+        if (!displayList.length) {
+          grid.innerHTML = '<p style="padding: 2rem; color: var(--color-text-muted);">No services match this filter.</p>';
+          return;
+        }
+
+        grid.innerHTML = displayList.map(s => `
+          <div class="image-card" data-service-id="${s.id}">
+            <div class="image-preview-wrapper">
+              <img src="${s.image}" alt="${escapeHtml(s.title)}" class="image-preview-img" id="img-preview-${s.id}">
+              <div style="position: absolute; top: 0.5rem; right: 0.5rem;">
+                ${s.needs_image ? '<span class="needs-image-badge">NEEDS IMAGE</span>' : '<span class="has-image-badge">&#10003; ACTIVE</span>'}
+              </div>
+            </div>
+            <div class="image-card-body">
+              <div>
+                <h4 class="image-card-title">${escapeHtml(s.category)}</h4>
+                <p class="image-card-cat">${escapeHtml(s.title)}</p>
+                <p style="font-size: 0.75rem; color: var(--color-text-faint); margin-top: 0.35rem; word-break: break-all;">
+                  Path: ${escapeHtml(s.image)}
+                </p>
+              </div>
+
+              <div class="file-upload-zone" onclick="document.getElementById('file-input-${s.id}').click()">
+                <label class="upload-label">
+                  &#8682; Click to upload or replace image
+                </label>
+                <input type="file" id="file-input-${s.id}" accept=".jpg,.jpeg,.png,.webp,.svg" onchange="handleImageUpload(${s.id}, this)">
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('filter-image-status').addEventListener('change', () => {
+        renderServiceImagesGrid(allServices);
+      });
+
+      // Handle Image File Upload with Preview and Validation
+      window.handleImageUpload = async function(serviceId, input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        // Validation
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
+        const ext = file.name.split('.').pop().toLowerCase();
+        if (!allowedExtensions.includes(ext)) {
+          alert('Invalid file format. Please upload JPG, PNG, WEBP, or SVG.');
+          input.value = '';
+          return;
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+          alert('File is too large! Maximum allowed size is 10MB.');
+          input.value = '';
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          const base64Data = e.target.result;
+          // Live preview immediately
+          const previewImg = document.getElementById(`img-preview-${serviceId}`);
+          if (previewImg) previewImg.src = base64Data;
+
+          try {
+            showToast('Uploading and optimizing image...');
+            const res = await fetch(`/api/admin/services/${serviceId}/image`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                image_data: base64Data,
+                filename: file.name
+              })
+            });
+
+            const data = await res.json();
+            if (res.ok && data.success) {
+              showToast('Image successfully updated for service!');
+              loadServices();
+            } else {
+              alert(data.error || 'Upload failed.');
+            }
+          } catch (err) {
+            alert('Upload failed due to network error.');
+          }
+        };
+        reader.readAsDataURL(file);
+      };
+
+      // -----------------------------------------------------------------------
+      // 3. GALLERY MANAGER (file-upload + video-URL, no manual path entry)
+      // -----------------------------------------------------------------------
+      let allGallery = [];
+
+      async function loadGallery() {
+        try {
+          const res = await fetch('/api/admin/gallery');
+          const data = await res.json();
+          if (data.success) {
+            allGallery = data.gallery;
+            renderGalleryGrid(allGallery);
+            document.getElementById('counter-gallery').textContent = allGallery.length;
+          }
+        } catch (e) {
+          console.error('Error loading gallery:', e);
+        }
+      }
+
+      function renderGalleryGrid(items) {
+        const grid = document.getElementById('gallery-admin-grid');
+        if (!items.length) {
+          grid.innerHTML = '<p style="padding: 2rem; color: var(--color-text-muted);">No gallery items yet.</p>';
+          return;
+        }
+
+        grid.innerHTML = items.map(item => `
+          <div class="gallery-admin-card">
+            <div class="gallery-thumb-wrapper">
+              <span class="type-badge">${item.type}</span>
+              ${item.type === 'video' ? 
+                `<img src="assets/frames/garland-exchange/ezgif-frame-001.jpg" alt="${escapeHtml(item.title)}">` : 
+                `<img src="${item.url}" alt="${escapeHtml(item.title)}">`
+              }
+            </div>
+            <div class="gallery-card-details">
+              <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-gold-light); margin-bottom: 0.25rem;">
+                ${escapeHtml(item.title)}
+              </h4>
+              <p style="font-size: 0.8rem; color: var(--color-gold-warm); margin-bottom: 0.5rem;">
+                Category: ${escapeHtml(item.category)}
+              </p>
+              <p style="font-size: 0.75rem; color: var(--color-text-faint); word-break: break-all; margin-bottom: 0.75rem;">
+                ${escapeHtml(item.url)}
+              </p>
+              <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                <button type="button" class="btn btn-outline" style="padding: 0.35rem 0.65rem;" onclick="editGallery(${item.id})">Edit</button>
+                <button type="button" class="btn btn-danger" style="padding: 0.35rem 0.65rem;" onclick="deleteGallery(${item.id})">Delete</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Add Gallery Item Modal
+      document.getElementById('btn-add-gallery').addEventListener('click', () => {
+        document.getElementById('gallery-edit-id').value = '';
+        document.getElementById('gallery-current-url').value = '';
+        document.getElementById('gallery-modal-title').textContent = 'Add Gallery Media';
+        document.getElementById('modal-gallery-type').value = 'photo';
+        document.getElementById('modal-gallery-title').value = '';
+        document.getElementById('modal-gallery-category').value = 'Wedding';
+        document.getElementById('modal-gallery-file').value = '';
+        document.getElementById('modal-gallery-video-url').value = '';
+        document.getElementById('gallery-file-name').textContent = '';
+        const preview = document.getElementById('gallery-img-preview');
+        preview.src = ''; preview.style.display = 'none';
+        document.getElementById('gallery-upload-placeholder').style.display = '';
+        galleryToggleMediaType('photo');
+        document.getElementById('gallery-modal').removeAttribute('hidden');
+      });
+
+      // Helper: toggle photo vs video sections
+      function galleryToggleMediaType(type) {
+        const pg = document.getElementById('gallery-photo-group');
+        const vg = document.getElementById('gallery-video-group');
+        const vu = document.getElementById('modal-gallery-video-url');
+        if (type === 'photo') {
+          pg.style.display = '';
+          vg.style.display = 'none';
+          vu.removeAttribute('required');
+        } else {
+          pg.style.display = 'none';
+          vg.style.display = '';
+          vu.setAttribute('required', '');
+        }
+      }
+
+      document.getElementById('modal-gallery-type').addEventListener('change', function() {
+        galleryToggleMediaType(this.value);
+      });
+
+      // File picker → show preview
+      document.getElementById('modal-gallery-file').addEventListener('change', function() {
+        const file = this.files[0];
+        if (!file) return;
+        document.getElementById('gallery-file-name').textContent = '📎 ' + file.name;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const preview = document.getElementById('gallery-img-preview');
+          preview.src = ev.target.result;
+          preview.style.display = 'block';
+          document.getElementById('gallery-upload-placeholder').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Edit Gallery
+      window.editGallery = function(id) {
+        const item = allGallery.find(x => x.id === id);
+        if (!item) return;
+        document.getElementById('gallery-edit-id').value = item.id;
+        document.getElementById('gallery-current-url').value = item.url;
+        document.getElementById('gallery-modal-title').textContent = 'Edit: ' + item.title;
+        document.getElementById('modal-gallery-type').value = item.type;
+        document.getElementById('modal-gallery-title').value = item.title;
+        document.getElementById('modal-gallery-category').value = item.category;
+        document.getElementById('modal-gallery-file').value = '';
+        document.getElementById('gallery-file-name').textContent = '';
+
+        if (item.type === 'photo') {
+          galleryToggleMediaType('photo');
+          const preview = document.getElementById('gallery-img-preview');
+          preview.src = item.url;
+          preview.style.display = 'block';
+          document.getElementById('gallery-upload-placeholder').style.display = 'none';
+          document.getElementById('modal-gallery-video-url').value = '';
+        } else {
+          galleryToggleMediaType('video');
+          document.getElementById('modal-gallery-video-url').value = item.url;
+          document.getElementById('gallery-img-preview').style.display = 'none';
+          document.getElementById('gallery-upload-placeholder').style.display = '';
+        }
+        document.getElementById('gallery-modal').removeAttribute('hidden');
+      };
+
+      // Delete Gallery
+      window.deleteGallery = async function(id) {
+        if (!confirm('Are you sure you want to remove this gallery item?')) return;
+        try {
+          const res = await fetch(`/api/admin/gallery/${id}`, { method: 'DELETE' });
+          if (res.ok) {
+            showToast('Gallery item deleted.');
+            loadGallery();
+          }
+        } catch (e) {
+          showToast('Failed to delete gallery item.');
+        }
+      };
+
+      // Save Gallery Form — file upload for photos, URL for videos
+      document.getElementById('gallery-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const saveBtn = document.getElementById('gallery-save-btn');
+        const editId = document.getElementById('gallery-edit-id').value;
+        const currentUrl = document.getElementById('gallery-current-url').value;
+        const mediaType = document.getElementById('modal-gallery-type').value;
+        const fileInput = document.getElementById('modal-gallery-file');
+
+        if (mediaType === 'video') {
+          // Video: use embed URL directly
+          const videoUrl = document.getElementById('modal-gallery-video-url').value.trim();
+          if (!videoUrl) { alert('Please enter a video embed URL.'); return; }
+          submitGalleryPayload(editId, videoUrl);
+        } else {
+          // Photo: upload file if selected, else keep existing URL (edit mode)
+          if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            saveBtn.disabled = true;
+            saveBtn.textContent = 'Uploading...';
+            const reader = new FileReader();
+            reader.onload = async (event) => {
+              try {
+                const upRes = await fetch('/api/admin/gallery/upload', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ file_data: event.target.result, filename: file.name })
+                });
+                const upData = await upRes.json();
+                if (upData.success) {
+                  submitGalleryPayload(editId, upData.url);
+                } else {
+                  alert(upData.error || 'Upload failed.');
+                }
+              } catch (err) {
+                alert('Upload failed due to network error.');
+              } finally {
+                saveBtn.disabled = false;
+                saveBtn.textContent = 'Save Media';
+              }
+            };
+            reader.readAsDataURL(file);
+          } else if (editId && currentUrl) {
+            // Editing with no new file — keep existing URL
+            submitGalleryPayload(editId, currentUrl);
+          } else {
+            alert('Please select an image to upload.');
+          }
+        }
+      });
+
+      async function submitGalleryPayload(editId, mediaUrl) {
+        if (!mediaUrl) {
+          alert('No media URL resolved. Please select a file or enter a URL.');
+          return;
+        }
+
+        const payload = {
+          type: document.getElementById('modal-gallery-type').value,
+          title: document.getElementById('modal-gallery-title').value.trim(),
+          category: document.getElementById('modal-gallery-category').value.trim(),
+          url: mediaUrl
+        };
+
+        try {
+          let res;
+          if (editId) {
+            res = await fetch(`/api/admin/gallery/${editId}`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+          } else {
+            res = await fetch('/api/admin/gallery', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+          }
+
+          if (res.ok) {
+            showToast(editId ? 'Gallery item updated!' : 'Gallery item added!');
+            document.getElementById('gallery-modal').setAttribute('hidden', '');
+            const saveBtn = document.getElementById('gallery-save-btn');
+            if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Save Media'; }
+            loadGallery();
+          }
+        } catch (err) {
+          showToast('Error saving gallery item.');
+        }
+      }
+
+      // -----------------------------------------------------------------------
+      // 4. ENQUIRIES MANAGER
+      // -----------------------------------------------------------------------
+      let allEnquiries = [];
+
+      async function loadEnquiries() {
+        try {
+          const res = await fetch('/api/admin/enquiries');
+          const data = await res.json();
+          if (data.success) {
+            allEnquiries = data.enquiries;
+            renderEnquiriesTable(allEnquiries);
+            document.getElementById('counter-enquiries').textContent = allEnquiries.length;
+          }
+        } catch (e) {
+          console.error('Error loading enquiries:', e);
+        }
+      }
+
+      function renderEnquiriesTable(enquiries) {
+        const tbody = document.getElementById('enquiries-table-body');
+        if (!enquiries.length) {
+          tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 2rem;">No enquiries recorded yet.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = enquiries.map(e => `
+          <tr>
+            <td><strong>#${e.id}</strong></td>
+            <td><strong style="color: var(--color-gold-light);">${escapeHtml(e.name)}</strong></td>
+            <td><a href="tel:${escapeHtml(e.phone)}" style="color: var(--color-gold-warm); text-decoration: underline;">${escapeHtml(e.phone)}</a></td>
+            <td>${escapeHtml(e.address)}</td>
+            <td><span class="has-image-badge">${escapeHtml(e.event_type || 'General')}</span></td>
+            <td>${escapeHtml(e.preferred_date || 'Flexible')}</td>
+            <td style="max-width: 260px; font-size: 0.85rem; color: var(--color-text-muted);">${escapeHtml(e.message || '—')}</td>
+            <td>
+              <select class="filter-select" style="padding: 0.3rem 0.5rem; font-size: 0.8rem;" onchange="updateEnquiryStatus(${e.id}, this.value)">
+                <option value="New" ${e.status === 'New' ? 'selected' : ''}>New</option>
+                <option value="Contacted" ${e.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="Confirmed" ${e.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+                <option value="Archived" ${e.status === 'Archived' ? 'selected' : ''}>Archived</option>
+              </select>
+            </td>
+            <td style="font-size: 0.8rem; color: var(--color-text-faint); white-space: nowrap;">${escapeHtml(e.created_at)}</td>
+            <td style="text-align: right;">
+              <button type="button" class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="deleteEnquiry(${e.id})">Delete</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Filter & Search enquiries
+      function applyEnquiryFilter() {
+        const search = document.getElementById('search-enquiries').value.toLowerCase().trim();
+        const status = document.getElementById('filter-enquiry-status').value;
+
+        let filtered = allEnquiries;
+        if (status !== 'All') {
+          filtered = filtered.filter(e => e.status === status);
+        }
+        if (search) {
+          filtered = filtered.filter(e => 
+            e.name.toLowerCase().includes(search) ||
+            e.phone.toLowerCase().includes(search) ||
+            e.address.toLowerCase().includes(search) ||
+            (e.message && e.message.toLowerCase().includes(search))
+          );
+        }
+        renderEnquiriesTable(filtered);
+      }
+
+      document.getElementById('search-enquiries').addEventListener('input', applyEnquiryFilter);
+      document.getElementById('filter-enquiry-status').addEventListener('change', applyEnquiryFilter);
+
+      window.updateEnquiryStatus = async function(id, newStatus) {
+        try {
+          const res = await fetch(`/api/admin/enquiries/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: newStatus })
+          });
+          if (res.ok) {
+            showToast(`Enquiry #${id} marked as ${newStatus}`);
+            loadEnquiries();
+          }
+        } catch (e) {
+          showToast('Failed to update status.');
+        }
+      };
+
+      window.deleteEnquiry = async function(id) {
+        if (!confirm('Are you sure you want to delete this enquiry record?')) return;
+        try {
+          const res = await fetch(`/api/admin/enquiries/${id}`, { method: 'DELETE' });
+          if (res.ok) {
+            showToast('Enquiry deleted.');
+            loadEnquiries();
+          }
+        } catch (e) {
+          showToast('Failed to delete enquiry.');
+        }
+      };
+
+      // Helper
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Initial Data Load
+      loadServices();
+      loadGallery();
+      loadEnquiries();
+
+    })();
+  </script>
+</body>
+</html>

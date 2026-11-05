@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="sindoorBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A0E18"/>
+      <stop offset="50%" stop-color="#6E1423"/>
+      <stop offset="100%" stop-color="#2A1810"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#sindoorBg)"/>
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#C98A2B" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="36" y="36" width="728" height="528" fill="none" stroke="#C98A2B" stroke-width="0.8" stroke-dasharray="4,4" stroke-opacity="0.3"/>
+  <!-- Topor / Sholapith Crown Motif -->
+  <g transform="translate(400, 290)">
+    <!-- Topor silhouette -->
+    <path d="M0 -140 L-45 0 L45 0 Z" fill="#FBF4E8" stroke="#C98A2B" stroke-width="2"/>
+    <line x1="0" y1="-140" x2="0" y2="0" stroke="#C98A2B" stroke-width="1.5"/>
+    <circle cx="0" cy="-145" r="5" fill="#E3A94C"/>
+    <!-- Traditional Mukut side wings -->
+    <path d="M-45 0 C-80 -20 -70 -70 -30 -60" fill="none" stroke="#FBF4E8" stroke-width="3"/>
+    <path d="M45 0 C80 -20 70 -70 30 -60" fill="none" stroke="#FBF4E8" stroke-width="3"/>
+    <!-- Shankha Pola & Loha bangles motif -->
+    <ellipse cx="-80" cy="90" rx="36" ry="18" fill="none" stroke="#FBF4E8" stroke-width="4"/>
+    <ellipse cx="-80" cy="100" rx="36" ry="18" fill="none" stroke="#6E1423" stroke-width="4"/>
+    <ellipse cx="-80" cy="110" rx="36" ry="18" fill="none" stroke="#C98A2B" stroke-width="3"/>
+    <ellipse cx="80" cy="90" rx="36" ry="18" fill="none" stroke="#FBF4E8" stroke-width="4"/>
+    <ellipse cx="80" cy="100" rx="36" ry="18" fill="none" stroke="#6E1423" stroke-width="4"/>
+    <ellipse cx="80" cy="110" rx="36" ry="18" fill="none" stroke="#C98A2B" stroke-width="3"/>
+    <!-- Sindoor Pot (Gachhkouto) -->
+    <path d="M-22 90 L22 90 L16 140 L-16 140 Z" fill="#6E1423" stroke="#C98A2B" stroke-width="2"/>
+    <ellipse cx="0" cy="90" rx="22" ry="8" fill="#E3A94C"/>
+    <path d="M-6 90 Q0 60 6 90 Z" fill="#C98A2B"/>
+    <!-- Petals scattering -->
+    <circle cx="-120" cy="40" r="6" fill="#E3A94C" opacity="0.8"/>
+    <circle cx="130" cy="30" r="5" fill="#E3A94C" opacity="0.8"/>
+    <circle cx="-150" cy="120" r="7" fill="#6E1423" opacity="0.8"/>
+    <circle cx="160" cy="110" r="6" fill="#6E1423" opacity="0.8"/>
+  </g>
+  <text x="400" y="80" text-anchor="middle" fill="#FBF4E8" font-family="'Cormorant Garamond', Georgia, serif" font-size="24" font-weight="600" letter-spacing="1">Saat Paake Bandha &amp; Sindoor Daan</text>
+  <text x="400" y="105" text-anchor="middle" fill="#E3A94C" font-family="'Hind Siliguri', sans-serif" font-size="13" letter-spacing="0.5">Alipore Rajbari Grounds • Traditional Wedding</text>
+</svg>

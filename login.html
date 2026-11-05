@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal Login | Anvarli Event Managers</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg-deep: #1F0307;
+      --color-bg-garnet: #380811;
+      --color-bg-card: rgba(45, 8, 14, 0.95);
+      --color-gold: #D4AF37;
+      --color-gold-light: #F3E5AB;
+      --color-gold-warm: #E5B24A;
+      --color-text-main: #FFF8EE;
+      --color-text-muted: #E8DAC8;
+      --color-border: rgba(212, 175, 55, 0.35);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg-deep);
+      background-image: 
+        radial-gradient(circle at 50% 30%, rgba(85, 12, 24, 0.6) 0%, rgba(31, 3, 7, 0.95) 75%),
+        url("assets/patterns/kolka-gold.svg");
+      background-repeat: repeat;
+      background-size: auto, 120px 120px;
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .login-card {
+      background-color: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-gold);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.12);
+      border-radius: 4px;
+      padding: clamp(2rem, 5vw, 2.75rem);
+      position: relative;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .brand-monogram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid var(--color-gold);
+      border-radius: 50%;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-gold-light);
+      margin-bottom: 0.75rem;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--color-text-main);
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--color-gold-warm);
+      text-transform: uppercase;
+      margin-top: 0.35rem;
+    }
+
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--color-gold-light);
+      margin-top: 1rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding-top: 0.75rem;
+    }
+
+    .alert-box {
+      display: none;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.25rem;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .alert-error {
+      background-color: rgba(180, 20, 30, 0.25);
+      border: 1px solid #E63946;
+      color: #FFB3BA;
+    }
+
+    .form-group {
+      margin-bottom: 1.35rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background-color: rgba(18, 3, 6, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--color-text-main);
+      font-size: 0.95rem;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+    }
+
+    /* Password Input with eye toggle padding */
+    .form-control-password {
+      padding-right: 3rem;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-gold-warm);
+      cursor: pointer;
+      padding: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      transition: color 0.2s;
+    }
+
+    .password-toggle-btn:hover {
+      color: var(--color-gold-light);
+    }
+
+    .password-toggle-btn:focus-visible {
+      outline: 2px solid var(--color-gold);
+      outline-offset: 2px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.95rem 1.5rem;
+      background: linear-gradient(135deg, #C98A2B 0%, #D4AF37 50%, #B8860B 100%);
+      color: #1A0307;
+      border: 1px solid #D4AF37;
+      border-radius: 3px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #D4AF37 100%);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: rgba(232, 218, 200, 0.6);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: var(--color-gold-warm);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .back-link:hover {
+      color: var(--color-gold-light);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-card">
+      
+      <div class="brand-header">
+        <div class="brand-monogram">A</div>
+        <h1 class="brand-title">ANVARLI</h1>
+        <p class="brand-subtitle">EVENT MANAGERS</p>
+        <h2 class="login-title">Control Panel Authentication</h2>
+      </div>
+
+      <!-- Alert Box for Error or Rate Limit -->
+      <div class="alert-box alert-error" id="alert-box" role="alert" aria-live="polite"></div>
+
+      <!-- Login Form: Password masked by default, un-prefilled, eye toggle -->
+      <form id="admin-login-form" novalidate autocomplete="off">
+        <div class="form-group">
+          <label for="username" class="form-label">Admin Username</label>
+          <div class="input-wrapper">
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              class="form-control" 
+              required 
+              autocomplete="off" 
+              value="" 
+              placeholder="Enter admin username"
+              autofocus
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <!-- Password field masked by default -->
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-control form-control-password" 
+              required 
+              autocomplete="off" 
+              value="" 
+              placeholder="Enter password"
+            >
+            <!-- Eye icon button to toggle show/hide typed password -->
+            <button 
+              type="button" 
+              class="password-toggle-btn" 
+              id="password-toggle-btn" 
+              aria-label="Show password" 
+              title="Show password"
+            >
+              <!-- Eye Open SVG (shown when password is masked) -->
+              <svg id="icon-eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <!-- Eye Closed / Slash SVG (shown when password is visible) -->
+              <svg id="icon-eye-closed" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit">
+          Log In to Dashboard
+        </button>
+      </form>
+
+      <div class="footer-note">
+        <p>Restricted Area • Session Protected</p>
+        <a href="/" class="back-link">Return to Public Website</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const loginForm = document.getElementById('admin-login-form');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const passwordToggleBtn = document.getElementById('password-toggle-btn');
+      const iconEyeOpen = document.getElementById('icon-eye-open');
+      const iconEyeClosed = document.getElementById('icon-eye-closed');
+      const alertBox = document.getElementById('alert-box');
+      const submitBtn = document.getElementById('btn-submit');
+
+      // Clear any cached or pre-filled values
+      usernameInput.value = '';
+      passwordInput.value = '';
+
+      // Toggle Password Visibility (Eye Icon)
+      passwordToggleBtn.addEventListener('click', () => {
+        const isPassword = passwordInput.getAttribute('type') === 'password';
+        if (isPassword) {
+          passwordInput.setAttribute('type', 'text');
+          iconEyeOpen.style.display = 'none';
+          iconEyeClosed.style.display = 'block';
+          passwordToggleBtn.setAttribute('aria-label', 'Hide password');
+          passwordToggleBtn.setAttribute('title', 'Hide password');
+        } else {
+          passwordInput.setAttribute('type', 'password');
+          iconEyeOpen.style.display = 'block';
+          iconEyeClosed.style.display = 'none';
+          passwordToggleBtn.setAttribute('aria-label', 'Show password');
+          passwordToggleBtn.setAttribute('title', 'Show password');
+        }
+        passwordInput.focus();
+      });
+
+      // Handle Login Form Submission
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        alertBox.style.display = 'none';
+        alertBox.textContent = '';
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+          alertBox.textContent = 'Please enter both username and password.';
+          alertBox.style.display = 'block';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Authenticating...';
+
+        try {
+          const res = await fetch('/api/admin/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+          });
+
+          const data = await res.json();
+
+          if (res.ok && data.success) {
+            submitBtn.textContent = 'Success! Redirecting...';
+            // Save token to localStorage as backup for Authorization header
+            if (data.token) {
+              localStorage.setItem('anvarli_admin_token', data.token);
+            }
+            window.location.href = '/admin';
+          } else {
+            alertBox.textContent = data.error || 'Authentication failed. Please verify your credentials.';
+            alertBox.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Log In to Dashboard';
+          }
+        } catch (err) {
+          alertBox.textContent = 'Network or server error. Please ensure the server is running.';
+          alertBox.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Log In to Dashboard';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

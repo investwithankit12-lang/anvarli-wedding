@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="pGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#240409"/>
+      <stop offset="50%" stop-color="#380811"/>
+      <stop offset="100%" stop-color="#1A0206"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#pGrad)"/>
+  <!-- Decorative border frame -->
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-dasharray="6,6" stroke-opacity="0.4"/>
+  <rect x="36" y="36" width="728" height="528" fill="none" stroke="#D4AF37" stroke-width="0.8" stroke-opacity="0.2"/>
+  <!-- Camera / Placeholder Icon -->
+  <g transform="translate(400, 240)" stroke="#D4AF37" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8">
+    <rect x="-60" y="-40" width="120" height="80" rx="10"/>
+    <circle cx="0" cy="0" r="26"/>
+    <circle cx="36" cy="-20" r="4" fill="#D4AF37"/>
+    <path d="M-24 -40 L-14 -56 L14 -56 L24 -40"/>
+  </g>
+  <!-- Needs Image Badge -->
+  <rect x="300" y="330" width="200" height="34" rx="4" fill="rgba(212, 175, 55, 0.15)" stroke="#D4AF37" stroke-width="1"/>
+  <text x="400" y="352" text-anchor="middle" fill="#E5B24A" font-family="'Hind Siliguri', sans-serif" font-size="13" font-weight="600" letter-spacing="1.5">NEEDS IMAGE</text>
+  <!-- Title and Category -->
+  <text x="400" y="415" text-anchor="middle" fill="#FFF8EE" font-family="'Cormorant Garamond', Georgia, serif" font-size="28" font-weight="600">Artist & Celebrity Booking</text>
+  <text x="400" y="445" text-anchor="middle" fill="rgba(255, 248, 238, 0.7)" font-family="'Hind Siliguri', sans-serif" font-size="14">Tollywood & Musical Artists</text>
+  <text x="400" y="510" text-anchor="middle" fill="rgba(212, 175, 55, 0.6)" font-family="'Hind Siliguri', sans-serif" font-size="12" letter-spacing="1">SWAP OR UPLOAD MEDIA IN ADMIN PANEL (/admin)</text>
+</svg>

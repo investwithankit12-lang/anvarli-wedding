@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="mehendiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B0C14"/>
+      <stop offset="60%" stop-color="#4A0E18"/>
+      <stop offset="100%" stop-color="#2A1810"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#mehendiBg)"/>
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#C98A2B" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="36" y="36" width="728" height="528" fill="none" stroke="#C98A2B" stroke-width="0.8" stroke-dasharray="4,4" stroke-opacity="0.3"/>
+  <!-- Canopy Draping -->
+  <path d="M400 130 Q200 240 100 450" fill="none" stroke="#E3A94C" stroke-width="2.5" stroke-opacity="0.6"/>
+  <path d="M400 130 Q600 240 700 450" fill="none" stroke="#E3A94C" stroke-width="2.5" stroke-opacity="0.6"/>
+  <path d="M400 130 Q280 280 180 470" fill="none" stroke="#C98A2B" stroke-width="1.8" stroke-opacity="0.5"/>
+  <path d="M400 130 Q520 280 620 470" fill="none" stroke="#C98A2B" stroke-width="1.8" stroke-opacity="0.5"/>
+  <!-- Central Chandelier / Lantern -->
+  <circle cx="400" cy="140" r="16" fill="#E3A94C"/>
+  <circle cx="400" cy="140" r="8" fill="#FBF4E8"/>
+  <path d="M380 156 L420 156 L410 186 L390 186 Z" fill="#C98A2B"/>
+  <!-- Moroccan & Bengali Mehendi Lounge Bolsters -->
+  <rect x="260" y="440" width="280" height="60" rx="10" fill="#6E1423" stroke="#C98A2B" stroke-width="1.5"/>
+  <ellipse cx="260" cy="470" rx="18" ry="30" fill="#E3A94C"/>
+  <ellipse cx="540" cy="470" rx="18" ry="30" fill="#E3A94C"/>
+  <!-- Decorative Mehendi Cushion Motifs -->
+  <circle cx="340" cy="470" r="14" fill="#C98A2B"/>
+  <circle cx="400" cy="470" r="16" fill="#FBF4E8" opacity="0.9"/>
+  <circle cx="460" cy="470" r="14" fill="#C98A2B"/>
+  <!-- Floral Rangoli Pattern on Foreground Floor -->
+  <g fill="none" stroke="#E3A94C" stroke-width="1.2" opacity="0.65">
+    <circle cx="400" cy="540" r="35"/>
+    <circle cx="400" cy="540" r="20"/>
+    <path d="M370 540 Q400 510 430 540 Q400 570 370 540 Z"/>
+    <path d="M400 510 Q430 540 400 570 Q370 540 400 510 Z"/>
+  </g>
+  <text x="400" y="80" text-anchor="middle" fill="#FBF4E8" font-family="'Cormorant Garamond', Georgia, serif" font-size="24" font-weight="600" letter-spacing="1">Colour-Led Mehendi Lounge</text>
+  <text x="400" y="105" text-anchor="middle" fill="#E3A94C" font-family="'Hind Siliguri', sans-serif" font-size="13" letter-spacing="0.5">Rajarhat Green Lawn • Mehendi</text>
+</svg>

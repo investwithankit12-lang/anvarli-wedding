@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="receptionBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A1810"/>
+      <stop offset="60%" stop-color="#4A0E18"/>
+      <stop offset="100%" stop-color="#1F080F"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#receptionBg)"/>
+  <rect x="24" y="24" width="752" height="552" fill="none" stroke="#C98A2B" stroke-width="1.5" stroke-opacity="0.4"/>
+  <rect x="36" y="36" width="728" height="528" fill="none" stroke="#C98A2B" stroke-width="0.8" stroke-dasharray="4,4" stroke-opacity="0.3"/>
+  <!-- Grand Stage Archway -->
+  <path d="M200 480 L200 240 C200 160 300 140 400 140 C500 140 600 160 600 240 L600 480" fill="none" stroke="#C98A2B" stroke-width="3"/>
+  <path d="M220 480 L220 250 C220 180 300 160 400 160 C500 160 580 180 580 250 L580 480" fill="none" stroke="#E3A94C" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <!-- Crystal Chandelier Representation -->
+  <g transform="translate(400, 160)">
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#C98A2B" stroke-width="2"/>
+    <path d="M-60 40 Q0 60 60 40" fill="none" stroke="#E3A94C" stroke-width="2"/>
+    <path d="M-40 60 Q0 80 40 60" fill="none" stroke="#E3A94C" stroke-width="1.8"/>
+    <path d="M-20 80 Q0 96 20 80" fill="none" stroke="#E3A94C" stroke-width="1.5"/>
+    <circle cx="0" cy="100" r="4" fill="#FBF4E8"/>
+    <circle cx="-30" cy="65" r="3" fill="#FBF4E8"/>
+    <circle cx="30" cy="65" r="3" fill="#FBF4E8"/>
+  </g>
+  <!-- Royal Velvet Sofa Representation -->
+  <rect x="290" y="380" width="220" height="90" rx="8" fill="#6E1423" stroke="#C98A2B" stroke-width="2"/>
+  <rect x="270" y="410" width="30" height="60" rx="6" fill="#4A0E18" stroke="#C98A2B" stroke-width="1.5"/>
+  <rect x="500" y="410" width="30" height="60" rx="6" fill="#4A0E18" stroke="#C98A2B" stroke-width="1.5"/>
+  <!-- Stage floral borders -->
+  <path d="M150 490 L650 490" stroke="#C98A2B" stroke-width="3"/>
+  <circle cx="200" cy="490" r="16" fill="#E3A94C"/>
+  <circle cx="250" cy="490" r="14" fill="#6E1423"/>
+  <circle cx="550" cy="490" r="14" fill="#6E1423"/>
+  <circle cx="600" cy="490" r="16" fill="#E3A94C"/>
+  <text x="400" y="80" text-anchor="middle" fill="#FBF4E8" font-family="'Cormorant Garamond', Georgia, serif" font-size="24" font-weight="600" letter-spacing="1">Royal Reception Decor &amp; Stage</text>
+  <text x="400" y="105" text-anchor="middle" fill="#E3A94C" font-family="'Hind Siliguri', sans-serif" font-size="13" letter-spacing="0.5">ITC Sonar Grand Ballroom • Reception</text>
+</svg>
