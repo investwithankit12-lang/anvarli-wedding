@@ -1,8 +1,6 @@
 {
-  "version": 2,
   "functions": {
     "api/index.py": {
-      "runtime": "python3.12",
       "maxDuration": 30
     }
   },
@@ -19,11 +17,11 @@
       ]
     },
     {
-      "source": "/(.*)\\.js$",
+      "source": "/(.*)\\.js",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
     },
     {
-      "source": "/(.*)\\.css$",
+      "source": "/(.*)\\.css",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }]
     }
   ]
