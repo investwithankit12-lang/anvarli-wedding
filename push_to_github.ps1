@@ -1,5 +1,5 @@
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "   PUSHING ANVARLI WEDDING WEBSITE TO GITHUB" -ForegroundColor Cyan
+Write-Host "   PUSHING RISHAN EVENTS WEBSITE TO GITHUB" -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -17,31 +17,33 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
     }
 }
 
-Write-Host "1. Checking commit status..." -ForegroundColor Yellow
-& $gitCmd status
+Write-Host "1. Staging all changed files (Rishan Events rebrand, logo, +91 96470 02563, and HD varmala animation)..." -ForegroundColor Yellow
+& $gitCmd add -A
+
+Write-Host "2. Committing changes..." -ForegroundColor Yellow
+& $gitCmd commit -m "Rebrand to Rishan Events, add official logo, update phone to +91 96470 02563, and enhance varmala 3D scroll resolution and clarity"
 
 Write-Host ""
-Write-Host "2. Pushing 'main' branch to https://github.com/investwithankit12-lang/anvarli-wedding.git..." -ForegroundColor Yellow
+Write-Host "3. Pushing 'main' branch to https://github.com/investwithankit12-lang/anvarli-wedding.git..." -ForegroundColor Yellow
 Write-Host "NOTE: When prompted:" -ForegroundColor Green
-Write-Host "   Username: investwithankit12 (or investwithankit12-lang)" -ForegroundColor Green
+Write-Host "   Username: investwithankit12" -ForegroundColor Green
 Write-Host "   Password: [Paste your GitHub Personal Access Token]" -ForegroundColor Green
 Write-Host ""
 
-# First try normal push
+# Push to GitHub
 & $gitCmd push -u origin main
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host ""
-    Write-Host "Normal push was rejected (likely because GitHub has an auto-generated README/License file)." -ForegroundColor Yellow
-    Write-Host "Attempting force push to overwrite the empty GitHub placeholder..." -ForegroundColor Yellow
+    Write-Host "Attempting push with force..." -ForegroundColor Yellow
     & $gitCmd push -u origin main --force
 }
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""
     Write-Host "==========================================================" -ForegroundColor Green
-    Write-Host " SUCCESS! All files have been uploaded to GitHub!" -ForegroundColor Green
-    Write-Host " You can now refresh Vercel and import the repository!" -ForegroundColor Green
+    Write-Host " SUCCESS! Rishan Events website has been pushed to GitHub!" -ForegroundColor Green
+    Write-Host " Vercel is now deploying the updated version automatically!" -ForegroundColor Green
     Write-Host "==========================================================" -ForegroundColor Green
 } else {
     Write-Host ""

@@ -1,5 +1,5 @@
 """
-api/index.py — Vercel Serverless Handler for ANVARLI EVENT MANAGERS
+api/index.py — Vercel Serverless Handler for RISHAN EVENTS
 Uses Supabase (PostgreSQL + Storage) instead of local SQLite.
 Handles all /api/* routes including admin CRUD, file uploads, and enquiries.
 
@@ -250,7 +250,7 @@ class handler(BaseHTTPRequestHandler):
             csv_bytes = out.getvalue().encode("utf-8-sig")
             self.send_response(200)
             self.send_header("Content-Type", "text/csv; charset=utf-8")
-            self.send_header("Content-Disposition", "attachment; filename=anvarli_enquiries.csv")
+            self.send_header("Content-Disposition", "attachment; filename=rishan_enquiries.csv")
             self.send_header("Content-Length", str(len(csv_bytes)))
             self.end_headers()
             self.wfile.write(csv_bytes)

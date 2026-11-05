@@ -1,5 +1,5 @@
 """
-server.py — Production HTTP Server for ANVARLI EVENT MANAGERS
+server.py — Production HTTP Server for RISHAN EVENTS
 Serves the public Bengali wedding marketing website, public enquiry API,
 and the authenticated /admin control panel with SQLite persistence,
 bcrypt auth, brute-force protection, and full CRUD for Services, Gallery, & Enquiries.
@@ -185,7 +185,7 @@ class AnvarliRequestHandler(http.server.BaseHTTPRequestHandler):
             csv_data = output.getvalue().encode("utf-8")
             self.send_response(200)
             self.send_header("Content-Type", "text/csv; charset=utf-8")
-            self.send_header("Content-Disposition", 'attachment; filename="anvarli_enquiries_export.csv"')
+            self.send_header("Content-Disposition", 'attachment; filename="rishan_enquiries_export.csv"')
             self.send_header("Content-Length", str(len(csv_data)))
             self.end_headers()
             self.wfile.write(csv_data)
@@ -512,7 +512,7 @@ class AnvarliRequestHandler(http.server.BaseHTTPRequestHandler):
 def run_server():
     database.init_db()
     with socketserver.TCPServer(("", PORT), AnvarliRequestHandler) as httpd:
-        print(f"[SERVER] Anvarli Event Managers running at http://localhost:{PORT}")
+        print(f"[SERVER] Rishan Events running at http://localhost:{PORT}")
         print(f"[SERVER] Admin portal available at http://localhost:{PORT}/admin")
         try:
             httpd.serve_forever()

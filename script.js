@@ -79,7 +79,8 @@
       // Dynamically size hero section to provide scroll distance proportional to frame count
       this.updateHeroHeight();
 
-      // Setup initial canvas resolution
+      // Setup initial canvas resolution with crisp high-DPI supersampling
+      this.dpr = Math.min(Math.max(window.devicePixelRatio || 1, 2), 3);
       this.resizeCanvas();
 
       // Preload all frames into array of Image objects
@@ -87,7 +88,7 @@
 
       // Listen for window resize
       window.addEventListener('resize', () => {
-        this.dpr = window.devicePixelRatio || 1;
+        this.dpr = Math.min(Math.max(window.devicePixelRatio || 1, 2), 3);
         this.updateHeroHeight();
         this.resizeCanvas();
         this.renderCurrentFrame();
@@ -142,6 +143,11 @@
 
       heroCanvas.width = this.canvasWidth;
       heroCanvas.height = this.canvasHeight;
+
+      if (this.ctx) {
+        this.ctx.imageSmoothingEnabled = true;
+        this.ctx.imageSmoothingQuality = 'high';
+      }
     }
 
     preloadFrames() {
@@ -255,11 +261,13 @@
 
       // Compute "cover" sizing: scale to fill canvas without distorting aspect ratio, center-cropped
       const scale = Math.max(cw / iw, ch / ih);
-      const renderW = iw * scale;
-      const renderH = ih * scale;
-      const offsetX = (cw - renderW) / 2;
-      const offsetY = (ch - renderH) / 2;
+      const renderW = Math.round(iw * scale);
+      const renderH = Math.round(ih * scale);
+      const offsetX = Math.round((cw - renderW) / 2);
+      const offsetY = Math.round((ch - renderH) / 2);
 
+      this.ctx.imageSmoothingEnabled = true;
+      this.ctx.imageSmoothingQuality = 'high';
       this.ctx.clearRect(0, 0, cw, ch);
       this.ctx.drawImage(img, offsetX, offsetY, renderW, renderH);
     }
@@ -503,10 +511,10 @@
         });
 
         if (res.ok) {
-          console.info('[Anvarli Event Managers] Enquiry saved to SQLite database:', enquiryData);
+          console.info('[Rishan Events] Enquiry saved to database:', enquiryData);
         }
       } catch (err) {
-        console.warn('[Anvarli Event Managers] Local offline submission saved.');
+        console.warn('[Rishan Events] Local offline submission saved.');
       }
 
       // Present inline confirmation state to the user
